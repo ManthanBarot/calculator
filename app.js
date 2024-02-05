@@ -15,15 +15,15 @@ clearbtn.addEventListener("click", () => {
 })
 
 buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-        // when clicked button is not erased button 
+    btn.addEventListener("click", () => { 
+
         if (!btn.id.match('erase')) {
-            // To display value on btn press
+            
             realTimeScreenValue.push(btn.value)
             console.log(realTimeScreenValue)
             currentInput.innerHTML = realTimeScreenValue.join('');
 
-            // To evaluate answer in real time
+            
             if (btn.classList.contains('num_btn')) {
                 if ((eval(realTimeScreenValue.join(''))).toString().length > 8) {
                     answerScreen.innerHTML = (eval(realTimeScreenValue.join(''))).toFixed(5);
@@ -36,21 +36,18 @@ buttons.forEach((btn) => {
             }
         }
 
-        // When erase button is clicked
         if (btn.id.match('erase')) {
             realTimeScreenValue.pop();
             currentInput.innerHTML = realTimeScreenValue.join('');
             answerScreen.innerHTML = eval(realTimeScreenValue.join(''));
         }
-
-        // When clicked button is evaluate button
+ 
         if (btn.id.match('evaluate')) {
             currentInput.className = 'answerScreen';
             answerScreen.className = 'currentInput';
             answerScreen.style.color = "white";
         }
-
-        // To prevent undefined error in screen
+ 
         if (typeof eval(realTimeScreenValue.join('')) == 'undefined') {
             answerScreen.innerHTML = 0
         }
